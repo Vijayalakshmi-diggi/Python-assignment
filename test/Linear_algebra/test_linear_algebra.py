@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../src/Linear_algebra")))
-from util import determinant
+from src.Linear_algebra.util import determinant
 
 class TestMatrixDeterminant(unittest.TestCase):
 
