@@ -1,2 +1,57 @@
+import pytest
+from src.lists.util import execute
 
- 
+
+def test_append():
+    l = []
+    execute(l, ["append", "10"])
+    assert l == [10]
+
+
+def test_insert():
+    l = [1, 3]
+    execute(l, ["insert", "1", "2"])
+    assert l == [1, 2, 3]
+
+
+def test_remove():
+    l = [1, 2, 3]
+    execute(l, ["remove", "2"])
+    assert l == [1, 3]
+
+
+def test_sort():
+    l = [3, 1, 2]
+    execute(l, ["sort"])
+    assert l == [1, 2, 3]
+
+
+def test_pop():
+    l = [1, 2, 3]
+    execute(l, ["pop"])
+    assert l == [1, 2]
+
+
+def test_reverse():
+    l = [1, 2, 3]
+    execute(l, ["reverse"])
+    assert l == [3, 2, 1]
+
+
+def test_print(capsys):
+    l = [1, 2, 3]
+    execute(l, ["print"])
+    captured = capsys.readouterr()
+    assert captured.out.strip() == "[1, 2, 3]"
+
+
+def test_remove_nonexistent():
+    l = [1, 2, 3]
+    with pytest.raises(ValueError):
+        execute(l, ["remove", "4"])
+
+
+def test_pop_empty():
+    l = []
+    with pytest.raises(IndexError):
+        execute(l, ["pop"])
